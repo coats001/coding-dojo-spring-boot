@@ -1,7 +1,8 @@
 package com.assignment.spring.service;
 
 import com.assignment.spring.model.WeatherResponse;
+import com.assignment.spring.repo.WeatherEntity;
 
 public interface WeatherService {
-    WeatherResponse getWeatherByCityId(String cityId);
+    WeatherEntity getWeatherByCity(String cityId);
 }

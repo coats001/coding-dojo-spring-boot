@@ -7,13 +7,16 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @Component
 public class WeatherServiceClient {
-    @Value("weather.url")
-    private String url;
+    @Value("${weather.url}")
+    private String urlWithPlaceholdeer;
 
     public WeatherResponse getWeatherData(String city) {
+
+        String urlWithCity = String.format(urlWithPlaceholdeer, city);
+
         return WebClient.create()
                 .get()
-                .uri("http://api.openweathermap.org/data/2.5/weather?q=Moscow&appid=664a438da5484e3beaf3509a10b017a7")
+                .uri(urlWithCity)
                 .retrieve()
                 .bodyToMono(WeatherResponse.class).block();
 
